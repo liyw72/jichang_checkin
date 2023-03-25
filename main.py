@@ -30,6 +30,8 @@ try:
     result = json.loads(session.post(url=check_url,headers=header).text)
     print(result['msg'])
     content = result['msg']
+    content_extra = " 剩余流量==>" + resp2.json().get('trafficInfo').get('unUsedTraffic')
+    content = content + content_extra
     # 进行推送
     if SCKEY != '':
         push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
